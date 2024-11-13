@@ -19,7 +19,10 @@ public class HibernateConfig {
             properties.load(new FileInputStream(CONFIG_PATH));
             return new Configuration()
                     .mergeProperties(properties)
+                    .addAnnotatedClass(EmployeeEntity.class)
+                    .addAnnotatedClass(DepartmentEntity.class)
                     .buildSessionFactory();
+
         } catch (Throwable throwable){
             System.err.println(throwable.getMessage());
             throw new ExceptionInInitializerError(throwable);
